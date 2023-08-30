@@ -1,0 +1,59 @@
+title: Access LSASS Memory for Dump Creation
+id:
+status: experimental
+description:
+references:
+tags:
+  - attack.Credential Access
+  - attack.T1003
+  - attack.T1003.001
+author:
+date:
+logsource:
+  category:
+  product:
+detection:
+  selection:
+    FieldName:
+  condition:
+fields:
+  - _time
+  - EventCode
+  - TargetImage
+  - CallTrace
+  - Computer
+  - TargetProcessId
+  - SourceImage
+  - SourceProcessId
+falsepositives:
+  - describe possible false positive conditions to help the analysts in their investigation
+level: one of five levels (informational, low, medium, high, critical)
+risk_score:
+dataset:
+platform: Splunk
+platform query:
+  helix:
+  splunk: '`sysmon` EventCode=10 TargetImage=*lsass.exe CallTrace=*dbgcore.dll* OR
+    CallTrace=*dbghelp.dll* | stats count min(_time) as firstTime max(_time) as lastTime
+    by Computer, TargetImage, TargetProcessId, SourceImage, SourceProcessId | rename
+    Computer as dest | `security_content_ctime(firstTime)`| `security_content_ctime(lastTime)`
+    | `access_lsass_memory_for_dump_creation_filter` '
+platform description:
+  helix:
+  splunk: Detect memory dumping of the LSASS process.
+platform id:
+  helix:
+  splunk: fb4c31b0-13e8-4155-8aa5-24de4b8d6717
+platform references:
+  helix:
+  splunk:
+    - https://2017.zeronights.org/wp-content/uploads/materials/ZN17_Kheirkhabarov_Hunting_for_Credentials_Dumping_in_Windows_Environment.pdf
+platform confidence:
+  helix:
+  splunk: 90
+platform risk:
+  helix:
+  splunk: 63
+platform severity:
+  helix:
+  splunk: Nil

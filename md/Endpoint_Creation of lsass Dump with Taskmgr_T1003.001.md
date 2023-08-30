@@ -1,0 +1,92 @@
+## title
+
+Creation of lsass Dump with Taskmgr
+
+## id
+
+None
+
+## status
+
+experimental
+
+## description
+
+None
+
+## references
+
+None
+
+## tags
+
+['attack.Credential Access', 'attack.T1003', 'attack.T1003.001']
+
+## author
+
+None
+
+## date
+
+None
+
+## logsource
+
+{'category': None, 'product': None}
+
+## detection
+
+{'selection': {'FieldName': None}, 'condition': None}
+
+## fields
+
+['_time', 'EventID', 'process_name', 'TargetFilename', 'Computer', 'object_category']
+
+## falsepositives
+
+['describe possible false positive conditions to help the analysts in their investigation']
+
+## level
+
+one of five levels (informational, low, medium, high, critical)
+
+## risk_score
+
+None
+
+## dataset
+
+None
+
+## platform
+
+Splunk
+
+## platform query
+
+{'helix': None, 'splunk': '`sysmon` EventID=11 process_name=taskmgr.exe TargetFilename=*lsass*.dmp | stats count min(_time) as firstTime max(_time) as lastTime by Computer, object_category, process_name, TargetFilename | rename Computer as dest | `security_content_ctime(firstTime)` | `security_content_ctime(lastTime)` | `creation_of_lsass_dump_with_taskmgr_filter`'}
+
+## platform description
+
+{'helix': None, 'splunk': 'Detect the hands on keyboard behavior of Windows Task Manager creating a process dump of lsass.exe. Upon this behavior occurring, a file write/modification will occur in the users profile under \\AppData\\Local\\Temp. The dump file, lsass.dmp, cannot be renamed, however if the dump occurs more than once, it will be named lsass (2).dmp.'}
+
+## platform id
+
+{'helix': None, 'splunk': 'b2fbe95a-9c62-4c12-8a29-24b97e84c0cd'}
+
+## platform references
+
+{'helix': None, 'splunk': ['https://github.com/redcanaryco/atomic-red-team/blob/master/atomics/T1003.001/T1003.001.md#atomic-test-5---dump-lsassexe-memory-using-windows-task-manager', 'https://attack.mitre.org/techniques/T1003/001/', 'https://2017.zeronights.org/wp-content/uploads/materials/ZN17_Kheirkhabarov_Hunting_for_Credentials_Dumping_in_Windows_Environment.pdf']}
+
+## platform confidence
+
+{'helix': None, 'splunk': 100}
+
+## platform risk
+
+{'helix': None, 'splunk': 80}
+
+## platform severity
+
+{'helix': None, 'splunk': 'Nil'}
+
