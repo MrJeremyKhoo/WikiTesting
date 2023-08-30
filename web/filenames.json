@@ -1,0 +1,6 @@
+[
+	"Endpoint_Access LSASS Memory for Dump Creation_T1003.001.md",
+	"Endpoint_Attempted_Credential_Dump_From_Registry_via_Reg_exe_T1003.md",
+	"Endpoint_Create Remote Thread into LSASS_T1003.001.md",
+	"Endpoint_Creation of lsass Dump with Taskmgr_T1003.001.md"
+]

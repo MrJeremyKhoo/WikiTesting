@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Markdown File</title>
+</head>
+<body>
+    <header>
+        <h1>Display Markdown File</h1>
+    </header>
+
+    <main>
+        <input type="text" id="searchQuery" placeholder="Enter file name" autocomplete="off">
+        <ul id="suggestions"></ul>
+        <button type="button" onclick="loadAndDisplayMarkdown()">Load and Display Markdown</button>
+        <div id="markdownContent"></div>
+    </main>
+</body>
+    <script src="https://cdn.jsdelivr.net/npm/showdown"></script> <!-- Link to Showdown library -->
+    <script src="fuzzysort.js"></script>
+    <script src="script.js"></script> <!-- Link to the external JavaScript file -->
+</html>
+
