@@ -1,0 +1,6 @@
+{
+    "attack.Credential Access": 4,
+    "attack.T1003": 4,
+    "attack.T1003.001": 3,
+    "attack.T1003.002": 1
+}

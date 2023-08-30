@@ -16,7 +16,19 @@
         <button type="button" onclick="loadAndDisplayMarkdown()">Load and Display Markdown</button>
         <div id="markdownContent"></div>
     </main>
-</body>
+
+   <h1>Tag Counts Table</h1>
+    <table id="tagTable">
+        <thead>
+            <tr>
+                <th>Tag Name</th>
+                <th>Tag Count</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+    </table>
+    <script src="display.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/showdown"></script> <!-- Link to Showdown library -->
     <script src="fuzzysort.js"></script>
     <script src="script.js"></script> <!-- Link to the external JavaScript file -->
